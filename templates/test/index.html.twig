@@ -3,18 +3,77 @@
 {% block title %}Hello fzqdqzdqzdq!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container mt-5 mb-5">
+        <div class="mb-5">
+            <h1 class="text-center">Bienvenue au Jeu du Morpion</h1>
+            <p class="text-center">Le jeu du morpion (ou tic-tac-toe) est un jeu simple mais amusant pour deux joueurs. Profitez de cette version en ligne et jouez avec vos amis !</p>
+        </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">Comment Jouer</h2>
+                        <p class="card-text">Le but du jeu est de réussir à aligner trois symboles identiques (croix ou ronds) horizontalement, verticalement ou en diagonale avant votre adversaire.</p>
+                        <p class="card-text">Utilisez la grille ci-dessous pour commencer à jouer :</p>
+                        <table class="table table-bordered text-center">
+                            <tr>
+                                <td class="p-4">X</td>
+                                <td class="p-4">O</td>
+                                <td class="p-4">X</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">O</td>
+                                <td class="p-4">X</td>
+                                <td class="p-4">O</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4">X</td>
+                                <td class="p-4">O</td>
+                                <td class="p-4">X</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center mt-5">
+            <div class="col-6">
+                <h2 class="text-center">Choisissez votre Nom de Jeu</h2>
+                <form action="/play" method="get">
+                    <div class="form-group">
+                        <label for="gameName">Nom de Jeu</label>
+                        <input type="text" class="form-control" id="gameName" name="gameName" placeholder="Entrez votre nom de jeu">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mt-3">Commencer à Jouer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/leo/Bureau/test_graphique/TestGraphique/src/Controller/TestController.php</code></li>
-        <li>Your template at <code>/home/leo/Bureau/test_graphique/TestGraphique/templates/test/index.html.twig</code></li>
-    </ul>
-</div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-6">
+                <h2 class="text-center mb-3">Contactez-nous</h2>
+                <form>
+                    <div class="form-group mb-1">
+                        <label for="name">Nom</label>
+                        <input type="text" class="form-control" id="name" placeholder="Votre nom">
+                    </div>
+                    <div class="form-group mb-1">
+                        <label for="email">Adresse Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Votre email">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" rows="3" placeholder="Votre message"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}
