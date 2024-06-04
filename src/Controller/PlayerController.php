@@ -18,10 +18,9 @@ class PlayerController extends AbstractController
     public function index(Request $request): Response
     {
         $this->dbService->addPlayer($request->get('gameName'));
-
         return $this->render('player/index.html.twig', [
             'prenom' => $request->get('gameName'),
-            'players' => $this->dbService->getPlayers(),
+            'players' => $this->dbService->getLeaderboard(),
         ]);
     }
 }
