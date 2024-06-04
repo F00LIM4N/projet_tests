@@ -23,7 +23,6 @@ class TestController extends AbstractController
     #[Route('/test', name: 'app_test')]
     public function index(): Response
     {
-        $this>logger->info('-------------------------------');
         $players = $this->dbService->getPlayers();
         return $this->render('test/index.html.twig', [
             'controller_name' => 'TestController',
