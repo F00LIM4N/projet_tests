@@ -41,7 +41,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-6">
                 <h2 class="text-center">Choisissez votre Nom de Jeu</h2>
-                <form action="/play" method="get">
+                <form action="{{ path('app_player') }}" method="post">
                     <div class="form-group">
                         <label for="gameName">Nom de Jeu</label>
                         <input type="text" class="form-control" id="gameName" name="gameName" placeholder="Entrez votre nom de jeu">
