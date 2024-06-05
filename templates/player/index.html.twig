@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PlayerController!{% endblock %}
+{% block title %}Jouons !{% endblock %}
 
 {% block body %}
     <style>
@@ -110,7 +110,7 @@
                 body: JSON.stringify({ winner: winner })
             }).then(response => {
                 if (response.ok) {
-                    console.log('Game result sent successfully');
+                    document.location.href = 'http://127.0.0.1:8000/';
                 } else {
                     console.error('Error sending game result');
                 }
