@@ -67,18 +67,14 @@ class DbService
     public function getLeaderboard()
     {
         $playersResults = $this->db->fetchAllAssociative('
-            SELECT
-            ID_Player1 AS PlayerID,
-            SUM(CASE WHEN Win_ID_Player = ID_Player1 THEN 1 ELSE 0 END) AS Wins
-        FROM Match
-        GROUP BY ID_Player1
-        UNION ALL
-        SELECT
-            ID_Player2 AS PlayerID,
-            SUM(CASE WHEN Win_ID_Player = ID_Player2 THEN 1 ELSE 0 END) AS Wins
-        FROM Match
-        GROUP BY ID_Player2');    
-        
+            SELECT ID_Player1 AS PlayerID, SUM(CASE WHEN Win_ID_Player = ID_Player1 THEN 1 ELSE 0 END) AS Wins
+            FROM Match
+            GROUP BY ID_Player1
+            UNION ALL
+            SELECT ID_Player2 AS PlayerID, SUM(CASE WHEN Win_ID_Player = ID_Player2 THEN 1 ELSE 0 END) AS Wins
+            FROM Match
+            GROUP BY ID_Player2');
+
         $accumulatedWins = [];
 
         foreach ($playersResults as $element) {
@@ -92,7 +88,6 @@ class DbService
             }
         }
 
-        
         $leaderboard= $this->matchPlayersToTheirWins($accumulatedWins);
 
         $restructuredArray = [];
@@ -100,12 +95,16 @@ class DbService
             $playerData['ID'] = $playerId;
             $restructuredArray[] = $playerData;
         }
+
+        usort($restructuredArray, function ($a, $b) {
+            return $b['wins'] <=> $a['wins'];
+        });
+
         return $restructuredArray;
     }
 
     public function matchPlayersToTheirWins($accumulatedWins)
     {
-        
         $players = $this->getPlayers();
 
         $idToNameMap = [];
@@ -123,6 +122,37 @@ class DbService
         }
 
         return $combinedInfo;
+    }
+
+    function playerWin($winner)
+    {
+        $player = $this->db->fetchAllAssociative('SELECT * FROM Player WHERE Name = :name', [
+            'name' => $winner
+        ]);
+
+        $opponent = $this->db->fetchAllAssociative('SELECT * FROM Player WHERE Name != :name', [
+            'name' => $winner
+        ]);
+
+        $this->addMatch($player[0]['ID'], $opponent[0]['ID'], $player[0]['ID']);
+
+        return $this->getLeaderboard();
+    }
+
+    function getWinner() {
+        $winner = $this->db->fetchAllAssociative('
+            SELECT Name
+            FROM Player
+            WHERE ID = (
+                SELECT Win_ID_Player
+                FROM Match
+                GROUP BY Win_ID_Player
+                ORDER BY COUNT(Win_ID_Player) DESC
+                LIMIT 1
+            )
+        ');
+
+        return $winner[0]['Name'];
     }
 }
 
