@@ -4,7 +4,7 @@ namespace App\Manager;
 
 use Doctrine\DBAL\Connection;
 
-class DbService extends \Doctrine\DBAL\Connection
+class DbService
 {
     public function __construct(
         private Connection $db,

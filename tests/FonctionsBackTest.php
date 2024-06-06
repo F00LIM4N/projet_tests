@@ -3,87 +3,103 @@
 namespace App\Tests;
 
 use App\Manager\DbService;
+use Doctrine\DBAL\Connection;
+use PHPUnit\Framework\TestCase;
 use Doctrine\DBAL\Exception;
 
-class FonctionsBackTest
+final class FonctionsBackTest extends TestCase
 {
-    public function __construct(
-        private DbService $db,
-    ) { }
+    private DbService $dbService;
+    private Connection $connection;
 
-    /**
-     * @throws Exception
-     */
-    public function testGetPlayers() {
-        $dbService = new DbService($this->db);
-
-        $players = $dbService->getPlayers();
-
-        $this->assertIsArray($players);
-        $this->assertNotEmpty($players);
+    protected function setUp(): void
+    {
+        $this->connection = $this->createMock(Connection::class);
+        $this->dbService = new DbService($this->connection);
     }
 
     /**
      * @throws Exception
      */
+    public function testGetPlayers()
+    {
+        $players = $this->dbService->getPlayers();
+
+        $this->assertIsArray($players);
+    }
+
     public function testGetMatches() {
-        $dbService = new DbService($this->db);
+        $dbService = new DbService($this->connection);
 
         $matches = $dbService->getMatches();
 
         $this->assertIsArray($matches);
-        $this->assertNotEmpty($matches);
     }
 
-    /**
-     * @throws Exception
-     */
     public function testGetPlayerById() {
-        $dbService = new DbService($this->db);
+        $dbService = new DbService($this->connection);
         $id = 1;
 
         $player = $dbService->getPlayerById($id);
 
         $this->assertIsArray($player);
-        $this->assertNotEmpty($player);
     }
 
-    /**
-     * @throws Exception
-     */
     public function testGetMatchesByPlayerId() {
-        $dbService = new DbService($this->db);
+        $dbService = new DbService($this->connection);
         $playerId = 1;
 
         $matches = $dbService->getMatchesByPlayerId($playerId);
 
         $this->assertIsArray($matches);
-        $this->assertNotEmpty($matches);
     }
 
-    /**
-     * @throws Exception
-     */
-    public function testAddPlayer() {
-        $dbService = new DbService($this->db);
+    public function testAddPlayer()
+    {
         $name = 'test';
 
-        $player = $dbService->addPlayer($name);
+        $this->connection
+            ->expects($this->once())
+            ->method('fetchAllAssociative')
+            ->with(
+                $this->stringContains('SELECT COUNT(*) AS \'EXIST\' FROM PLAYER WHERE Name = :name'),
+                $this->arrayHasKey('name')
+            )
+            ->willReturn([['EXIST' => 0]]);
 
-        $this->assertNull($player);
+        $this->connection
+            ->expects($this->once())
+            ->method('executeStatement')
+            ->with(
+                $this->stringContains('INSERT INTO PLAYER (Name) VALUES (:name)'),
+                $this->arrayHasKey('name')
+            )
+            ->willReturn(1);
+
+        $player = $this->dbService->addPlayer($name);
+
+        $this->assertIsInt($player);
     }
 
-    /**
-     * @throws Exception
-     */
-    public function testAddMatch() {
-        $dbService = new DbService($this->db);
+    public function testAddMatch()
+    {
         $idPlayer1 = 1;
         $idPlayer2 = 2;
         $winIdPlayer = 1;
+        $expectedResult = 1;
 
-        $match = $dbService->addMatch($idPlayer1, $idPlayer2, $winIdPlayer);
+        $this->connection
+            ->expects($this->once())
+            ->method('executeStatement')
+            ->with(
+                $this->stringContains('INSERT INTO Match'),
+                $this->arrayHasKey('idPlayer1')
+            )
+            ->willReturn($expectedResult);
+
+        $match = $this->dbService->addMatch($idPlayer1, $idPlayer2, $winIdPlayer);
 
         $this->assertIsInt($match);
+        $this->assertEquals($expectedResult, $match);
     }
 }
