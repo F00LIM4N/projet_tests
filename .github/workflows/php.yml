@@ -50,3 +50,6 @@ jobs:
 
     - name: Run Puppeteer tests
       run: node public/test.js
+
+    - name: Run PHPUnit tests
+      run: php bin/phpunit
