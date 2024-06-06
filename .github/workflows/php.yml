@@ -29,11 +29,24 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
 
-    - name: Install dependencies
+    - name: Install PHP dependencies
       run: composer install --prefer-dist --no-progress
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+    - name: Set up SQLite database
+      run: |
+        php bin/console doctrine:database:create --env=test
+        php bin/console doctrine:schema:update --force --env=test
 
-    # - name: Run test suite
-    #   run: composer run-script test
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install Puppeteer
+      run: npm install puppeteer
+
+    - name: Start Symfony server
+      run: php -S 127.0.0.1:8000 -t public &
+
+    - name: Run Puppeteer tests
+      run: node public/test.js
