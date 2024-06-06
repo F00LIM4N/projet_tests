@@ -80,8 +80,8 @@
         function checkGameName() {
             const gameNameInput = document.getElementById("gameName");
             const inputValue = gameNameInput.value;
-
-            if (inputValue === "Alice" || inputValue === "Bob" || inputValue === "Charlie") {
+            
+            if (inputValue === "Alice" || inputValue === "Bob" || inputValue === "Charlie"|| inputValue.trim() === "") {
                 document.querySelector("button[type='submit']").disabled = true;
             } else {
                 document.querySelector("button[type='submit']").disabled = false;
