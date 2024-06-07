@@ -59,3 +59,17 @@ jobs:
       with:
         name: test-results
         path: tests/junit.xml
+
+    - name: Send notification to Discord
+      env:
+        DISCORD_WEBHOOK_URL: ${{ secrets.BUILDER }}
+      run: |
+        STATUS=":white_check_mark: Build succeeded"
+        if [ "${{ job.status }}" != "success" ]; then
+          STATUS=":x: Build failed"
+        fi
+
+        PAYLOAD=$(jq -n --arg status "$STATUS" --arg sha "$GITHUB_SHA" --arg repo "$GITHUB_REPOSITORY" \
+        '{username: "CI Bot", embeds: [{title: $status, description: "Repository: \($repo)\nCommit: \($sha)"}]}')
+
+        curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$BUILDER"
