@@ -1,0 +1,9 @@
+# Run tests unitaires + integration
+php bin/phpunit
+
+# Run tests graphiques
+cd public
+node test.js
+
+# Run tests integration
+php bin/phpunit --filter TestsIntegrationTest
