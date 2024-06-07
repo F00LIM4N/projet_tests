@@ -24,7 +24,7 @@
     </testsuites>
 
     <logging>
-        <junit outputFile="tests/results/junit.xml"/>
+        <junit outputFile="tests/junit.xml"/>
     </logging>
 
     <coverage processUncoveredFiles="true">

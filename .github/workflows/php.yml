@@ -58,4 +58,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: test-results
-        path: tests/results/junit.xml
+        path: tests/junit.xml
