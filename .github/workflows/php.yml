@@ -62,7 +62,7 @@ jobs:
 
     - name: Send notification to Discord
       env:
-        DISCORD_WEBHOOK_URL: ${{ secrets.BUILDER }}
+        BUILDER: ${{ secrets.BUILDER }}
       run: |
         STATUS=":white_check_mark: Build succeeded"
         if [ "${{ job.status }}" != "success" ]; then
