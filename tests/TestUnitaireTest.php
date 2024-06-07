@@ -7,7 +7,7 @@ use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
 use Doctrine\DBAL\Exception;
 
-final class FonctionsBackTest extends TestCase
+final class TestUnitaireTest extends TestCase
 {
     private DbService $dbService;
     private Connection $connection;

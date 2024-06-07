@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="8" assertions="18" errors="0" warnings="0" failures="0" skipped="0" time="0.134084">
-    <testsuite name="Project Test Suite" tests="8" assertions="18" errors="0" warnings="0" failures="0" skipped="0" time="0.134084">
-      <testsuite name="App\Tests\FonctionsBackTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/FonctionsBackTest.php" tests="6" assertions="9" errors="0" warnings="0" failures="0" skipped="0" time="0.010412">
-        <testcase name="testGetPlayers" class="App\Tests\FonctionsBackTest" classname="App.Tests.FonctionsBackTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/FonctionsBackTest.php" line="24" assertions="1" time="0.008507"/>
-        <testcase name="testGetMatches" class="App\Tests\FonctionsBackTest" classname="App.Tests.FonctionsBackTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/FonctionsBackTest.php" line="31" assertions="1" time="0.000035"/>
-        <testcase name="testGetPlayerById" class="App\Tests\FonctionsBackTest" classname="App.Tests.FonctionsBackTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/FonctionsBackTest.php" line="39" assertions="1" time="0.000025"/>
-        <testcase name="testGetMatchesByPlayerId" class="App\Tests\FonctionsBackTest" classname="App.Tests.FonctionsBackTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/FonctionsBackTest.php" line="48" assertions="1" time="0.000035"/>
-        <testcase name="testAddPlayer" class="App\Tests\FonctionsBackTest" classname="App.Tests.FonctionsBackTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/FonctionsBackTest.php" line="57" assertions="2" time="0.001602"/>
-        <testcase name="testAddMatch" class="App\Tests\FonctionsBackTest" classname="App.Tests.FonctionsBackTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/FonctionsBackTest.php" line="84" assertions="3" time="0.000208"/>
+  <testsuite name="" tests="8" assertions="18" errors="0" warnings="0" failures="0" skipped="0" time="0.151638">
+    <testsuite name="Project Test Suite" tests="8" assertions="18" errors="0" warnings="0" failures="0" skipped="0" time="0.151638">
+      <testsuite name="App\Tests\Service\TestsIntegrationTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/Service/TestsIntegrationTest.php" tests="2" assertions="9" errors="0" warnings="0" failures="0" skipped="0" time="0.142231">
+        <testcase name="testDatabaseConnection" class="App\Tests\Service\TestsIntegrationTest" classname="App.Tests.Service.TestsIntegrationTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/Service/TestsIntegrationTest.php" line="9" assertions="1" time="0.078179"/>
+        <testcase name="testIntegration" class="App\Tests\Service\TestsIntegrationTest" classname="App.Tests.Service.TestsIntegrationTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/Service/TestsIntegrationTest.php" line="28" assertions="8" time="0.064052"/>
       </testsuite>
-      <testsuite name="App\Tests\Service\TestsIntegrationTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/Service/TestsIntegrationTest.php" tests="2" assertions="9" errors="0" warnings="0" failures="0" skipped="0" time="0.123672">
-        <testcase name="testDatabaseConnection" class="App\Tests\Service\TestsIntegrationTest" classname="App.Tests.Service.TestsIntegrationTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/Service/TestsIntegrationTest.php" line="9" assertions="1" time="0.045010"/>
-        <testcase name="testIntegration" class="App\Tests\Service\TestsIntegrationTest" classname="App.Tests.Service.TestsIntegrationTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/Service/TestsIntegrationTest.php" line="28" assertions="8" time="0.078661"/>
+      <testsuite name="App\Tests\TestUnitaireTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/TestUnitaireTest.php" tests="6" assertions="9" errors="0" warnings="0" failures="0" skipped="0" time="0.009407">
+        <testcase name="testGetPlayers" class="App\Tests\TestUnitaireTest" classname="App.Tests.TestUnitaireTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/TestUnitaireTest.php" line="24" assertions="1" time="0.006521"/>
+        <testcase name="testGetMatches" class="App\Tests\TestUnitaireTest" classname="App.Tests.TestUnitaireTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/TestUnitaireTest.php" line="31" assertions="1" time="0.000060"/>
+        <testcase name="testGetPlayerById" class="App\Tests\TestUnitaireTest" classname="App.Tests.TestUnitaireTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/TestUnitaireTest.php" line="39" assertions="1" time="0.000055"/>
+        <testcase name="testGetMatchesByPlayerId" class="App\Tests\TestUnitaireTest" classname="App.Tests.TestUnitaireTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/TestUnitaireTest.php" line="48" assertions="1" time="0.000046"/>
+        <testcase name="testAddPlayer" class="App\Tests\TestUnitaireTest" classname="App.Tests.TestUnitaireTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/TestUnitaireTest.php" line="57" assertions="2" time="0.002436"/>
+        <testcase name="testAddMatch" class="App\Tests\TestUnitaireTest" classname="App.Tests.TestUnitaireTest" file="/home/leo/Bureau/test_graphique/TestGraphique/tests/TestUnitaireTest.php" line="84" assertions="3" time="0.000289"/>
       </testsuite>
     </testsuite>
   </testsuite>
